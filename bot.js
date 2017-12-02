@@ -2,7 +2,7 @@ let mysql_modul = require('./module/mysql_modul'),
     timer = require('./module/timer'),
     exchange = require('./module/poloniex');
 
-timer('*/1 * * * * *', () => {
+var job = timer('*/1 * * * * *', () => {
     mysql_modul.get_choice()
         .then(results => {
             if (results[0].status == 0) {
