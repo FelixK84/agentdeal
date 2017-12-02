@@ -1,7 +1,7 @@
 const path = require('path');
 const CronJob = require('cron').CronJob;
 const Poloniex = require('poloniex-api-node');
-const mysql_modul = require(path.join(__dirname, 'module', 'mysql_modul'));
+const mysql_modul = require('./module/mysql_modul'));
 
 const key = process.env.POLONIEX_KEY; // API Key
 const secret = process.env.POLONIEX_SECRET; // API Private Key
