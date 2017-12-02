@@ -7,9 +7,12 @@ const poloniex = new Poloniex(key, secret);
 module.exports = {
     buy: buy,
     sell: sell,
-    balances: poloniex.returnBalances
+    balances: balances
 };
 
+function balances(){
+    return poloniex.returnBalances();
+}
 
 function buy(pair, limit, quantity, fillorkill, p, q){
     return new Promise((resolve,reject)=>{
