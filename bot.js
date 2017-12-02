@@ -25,10 +25,9 @@ var job = timer('*/1 * * * * *', () => {
                         mysql_modul.update_choice(results[0].id);
                         console.log(result);
                     })
-                    .catch(console.error);
-                .catch((err) => {
-                    console.log(err.message);
-                });
+                    .catch((err) => {
+                        console.log(err.message);
+                    });
             } else {
                 console.log('jetzt wird nicht gehandelt');
             }
