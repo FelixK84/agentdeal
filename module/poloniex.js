@@ -16,7 +16,7 @@ function balances(){
 
 function buy(pair, limit, quantity, fillorkill, p, q){
     return new Promise((resolve,reject)=>{
-        poloniex.buy(pair, limit, quantity, 1, false, false, function(error, data){
+        poloniex.buy(pair, limit, quantity, false, false, false, function(error, data){
             if(error){
                 reject(Error(error.message));
             } else {
@@ -28,7 +28,7 @@ function buy(pair, limit, quantity, fillorkill, p, q){
 
 function sell(pair, limit, quantity, fillorkill, p, q){
     return new Promise((resolve,reject)=>{
-        poloniex.sell(pair, limit, quantity, 1, false, false, function(error, data){
+        poloniex.sell(pair, limit, quantity, false, false, false, function(error, data){
             if(error){
                 reject(Error(error.message));
             } else {
