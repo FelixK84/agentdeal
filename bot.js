@@ -24,12 +24,12 @@ var job = timer('*/1 * * * * *', () => {
                     .then((result) => {
                         mysql_modul.update_choice(results[0].id);
                         console.log(result);
-                    })
-                    .catch((err) => {
-                        console.log(err.message);
                     });
             });
-        );
+        )
+        .catch((err) => {
+            console.log(err.message);
+        });
 }, null, true);
 
 function workToDo(result) {
