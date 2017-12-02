@@ -1,7 +1,7 @@
 const path = require('path');
 const CronJob = require('cron').CronJob;
 const Poloniex = require('poloniex-api-node');
-const mysql_modul = require('./module/mysql_modul'));
+const mysql_modul = require('./module/mysql_modul');
 
 const key = process.env.POLONIEX_KEY; // API Key
 const secret = process.env.POLONIEX_SECRET; // API Private Key
@@ -10,7 +10,7 @@ const poloniex = new Poloniex(key, secret);
 
 function buy(pair, limit, quantity, fillorkill){
     return new Promise((resolve,reject)=>{
-        poloniex.buy(pair, limit, quantity, true, false, false, function(error, data){
+        poloniex.buy(pair, limit, quantity, 1, false, false, function(error, data){
             if(error){
                 reject(Error(error.message));
             } else {
@@ -22,7 +22,7 @@ function buy(pair, limit, quantity, fillorkill){
 
 function sell(pair, limit, quantity, fillorkill){
     return new Promise((resolve,reject)=>{
-        poloniex.sell(pair, limit, quantity, true, false, false, function(error, data){
+        poloniex.sell(pair, limit, quantity, 1, false, false, function(error, data){
             if(error){
                 reject(Error(error.message));
             } else {
@@ -44,14 +44,14 @@ var job = new CronJob('*/1 * * * * *', () => {
                   .then(()=>sell('BTC_ZEC', results[0].btczec, balances.ZEC, true))
                   .then(console.log)
                   .catch(console.error);
-
         } else if(balances.ETH > 0.02) {
-          poloniex.buy('ETH_ZEC', results[0].ethzec, (balances.ETH/results[0].ethzec), true, false, false, function(err, data){
+
+          poloniex.buy('ETH_ZEC', results[0].ethzec, (balances.ETH/results[0].ethzec), 1, false, false, function(err, data){
             if(err){
               console.error(err);
             } else {
               console.log(data);
-              poloniex.sell('BTC_ZEC', results[0].btczec, balances.ZEC, true, false, false, function(err, data){
+              poloniex.sell('BTC_ZEC', results[0].btczec, balances.ZEC, 1, false, false, function(err, data){
                 if(err){
                   console.error(err);
                 } else {
@@ -66,7 +66,7 @@ var job = new CronJob('*/1 * * * * *', () => {
             }
           });
         } else if(balances.ZEC > 0.05) {
-          poloniex.sell('BTC_ZEC', results[0].btczec, balances.ZEC, true, false, false, function(err, data){
+          poloniex.sell('BTC_ZEC', results[0].btczec, balances.ZEC, 1, false, false, function(err, data){
             if(err){
               console.error(err);
             } else {
